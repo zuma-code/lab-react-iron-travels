@@ -80,8 +80,9 @@ Inside of the `src/` folder, create a new folder named `components`.
 Use the `components` folder to store all the components that you create in the following iterations.
 
 
-
 ----
+
+<br>
 
 ### Iteration 1 | List and Keys - `TravelList`
 
@@ -99,15 +100,6 @@ import travelPlansData from "./data/travel-plans.json";
 <TravelList />
 ```
 
-
-<details>
-  <summary><b>Hint</b></summary>
-
-
-  After importing the JSON data remember to store it in the component state. Use the `useState` hook to create a new state variable.
-
-</details>
-
 <br>
 
 <details>
@@ -124,7 +116,14 @@ import travelPlansData from "./data/travel-plans.json";
 
 </details>
 
-<br>
+<details>
+  <summary><b>Hint</b></summary>
+
+  <br>
+
+  After importing the JSON data remember to store it in the component state. Use the `useState` hook to create a new state variable.
+
+</details>
 
 ----
 
@@ -160,7 +159,6 @@ Additionally, if the travel plan includes an all-inclusive package (`allInclusiv
 
 </details>
 
-<br>
 
 ----
 
@@ -169,13 +167,6 @@ Additionally, if the travel plan includes an all-inclusive package (`allInclusiv
 ### Iteration 3 | Removing Items - Delete Button
 
 Update the `TravelList` component and display a delete button on each list item. When the user clicks on the button, the corresponding travel plan should be removed from the list.
-
-<details>
-  <summary><b>Hint</b></summary>
-
-  You can use the `id` property of each travel plan to identify the item to remove.
-
-</details>
 
 <br>
 
@@ -193,10 +184,18 @@ Update the `TravelList` component and display a delete button on each list item.
 
 </details>
 
-<br>
+<details>
+  <summary><b>Hint</b></summary>
+
+  <br>
+
+  You can use the `id` property of each travel plan to identify the item to remove.
+
+</details>
 
 ----
 
+<br>
 
 ### Bonus: Iteration 4 | Extract Component
 
@@ -215,6 +214,8 @@ The component should take 1 prop:
 <br>
 
 ----
+
+<br>
 
 ### Bonus: Iteration 5 | Favorites
 
@@ -249,10 +250,10 @@ Additionally, the background color of the button should change with each click. 
 
 </details>
 
-<br>
 
 ----
 
+<br>
 
 
 Happy coding! :blue_heart:
