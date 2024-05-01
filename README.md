@@ -89,7 +89,7 @@ Use the `components` folder to store all the components that you create in the f
 Create a `TravelList` component that displays the list of all the items coming from the file `src/data/travel-plans.json`. Remember to import the json data in the component:
 
 ```js
-import travelPlansData from "./data/travel-plans.json";
+import travelPlansData from "../assets/travel-plans.json";
 ```
 
 <br>
