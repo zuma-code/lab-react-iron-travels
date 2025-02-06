@@ -9,6 +9,11 @@ const TravelList = () => {
     setTravelPlans(travelPlansData);
   }, []);
 
+  // Function to remove a travel plan by id
+  const handleDelete = (id) => {
+    setTravelPlans((prevPlans) => prevPlans.filter(plan => plan.id !== id));
+  };
+
   // Function to determine the label based on total cost
   const getLabel = (totalCost) => {
     if (totalCost <= 350) {
@@ -19,73 +24,73 @@ const TravelList = () => {
     return null;
   };
 
-  // Dynamic styles for "Great Deal" button
-  const greatDealButtonStyles = {
-    backgroundColor: 'green',
-    color: 'black',
-    border: 'none',
-    padding: '8px 12px',
-    marginTop: '10px',
-    cursor: 'pointer',
-    borderRadius: '5px',
-    fontSize: '14px'
-  };
-
-  // Dynamic styles for "Premium" button
-  const premiumButtonStyles = {
-    backgroundColor: 'blue',
-    color: 'white', 
-    border: 'none',
-    padding: '8px 12px',
-    marginTop: '10px',
-    cursor: 'pointer',
-    borderRadius: '5px',
-    fontSize: '14px'
-  };
-
-  // Styles for the "All Inclusive" button
-  const allInclusiveButtonStyles = {
-    backgroundColor: 'blue',
-    color: 'white',
-    border: 'none',
-    padding: '8px 12px',
-    marginTop: '10px',
-    cursor: 'pointer',
-    borderRadius: '5px',
-    fontSize: '14px'
+  // Dynamic styles
+  const buttonStyles = {
+    base: {
+      border: 'none',
+      padding: '8px 12px',
+      marginTop: '10px',
+      cursor: 'pointer',
+      borderRadius: '5px',
+      fontSize: '14px',
+    },
+    greatDeal: {
+      backgroundColor: 'green',
+      color: 'black',
+    },
+    premium: {
+      backgroundColor: 'blue',
+      color: 'white',
+    },
+    allInclusive: {
+      backgroundColor: 'blue',
+      color: 'white',
+    },
+    delete: {
+      backgroundColor: 'gray',
+      color: 'white',
+    },
   };
 
   return (
     <div className="travel-list">
-      {travelPlans.map((plan) => (
-        <div key={plan.id} className="travel-card">
-          <div className="card-image">
-            <img src={plan.image} alt={plan.destination} />
+      {travelPlans.length > 0 ? (
+        travelPlans.map((plan) => (
+          <div key={plan.id} className="travel-card">
+            <div className="card-image">
+              <img src={plan.image} alt={plan.destination} />
+            </div>
+            <div className="card-content">
+              <h3>{plan.destination} ({plan.days} days)</h3>
+              <p>{plan.description}</p>
+              <p><strong>Price: ${plan.totalCost}</strong></p>
+
+              {getLabel(plan.totalCost) === "Great Deal" && (
+                <button style={{ ...buttonStyles.base, ...buttonStyles.greatDeal }}>Great Deal</button>
+              )}
+              {getLabel(plan.totalCost) === "Premium" && (
+                <button style={{ ...buttonStyles.base, ...buttonStyles.premium }}>Premium</button>
+              )}
+              {plan.allInclusive && (
+                <button style={{ ...buttonStyles.base, ...buttonStyles.allInclusive }}>All Inclusive</button>
+              )}
+              
+              {/* Delete button */}
+              <button 
+                style={{ ...buttonStyles.base, ...buttonStyles.delete }} 
+                onClick={() => handleDelete(plan.id)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
-          <div className="card-content">
-            <h3>{plan.destination} ({plan.days} days)</h3>
-            <p>{plan.description}</p>
-            <p><strong>Price: ${plan.totalCost}</strong></p>
-
-            {/* Render the "Great Deal" button */}
-            {getLabel(plan.totalCost) === "Great Deal" && (
-              <button style={greatDealButtonStyles}>Great Deal</button>
-            )}
-
-            {/* Render the "Premium" button */}
-            {getLabel(plan.totalCost) === "Premium" && (
-              <button style={premiumButtonStyles}>Premium</button>
-            )}
-
-            {/* Render the "All Inclusive" button if applicable */}
-            {plan.allInclusive && (
-              <button style={allInclusiveButtonStyles}>All Inclusive</button>
-            )}
-          </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>No travel plans available.</p>
+      )}
     </div>
   );
 };
 
 export default TravelList;
+
